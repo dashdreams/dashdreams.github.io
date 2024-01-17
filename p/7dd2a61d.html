@@ -1,0 +1,2073 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="gogs配置详解, Day Day Up!">
+    <meta name="description" content="Recording Process">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>gogs配置详解 | Day Day Up!</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Day Day Up!</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Day Day Up!</div>
+        <div class="logo-desc">
+            
+            Recording Process
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">gogs配置详解</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Gogs/">
+                                <span class="chip bg-color">Gogs</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Git/" class="post-category">
+                                Git
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-09-02
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-01-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.9k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="配置与运行"><a href="#配置与运行" class="headerlink" title="配置与运行"></a>配置与运行</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><h4 id="默认配置文件"><a href="#默认配置文件" class="headerlink" title="默认配置文件"></a>默认配置文件</h4><p>默认配置都保存在<code>conf/app.ini</code>，您永远不需要编辑它。该文件从<code>v0.6.0</code>版本开始被嵌入到二进制中。</p>
+<h4 id="自定义配置文件"><a href="#自定义配置文件" class="headerlink" title="自定义配置文件"></a>自定义配置文件</h4><p>那么，在不允许修改默认配置文件<code>conf/app.ini</code>的情况下，怎么才能自定义配置呢？很简单，只要创建<code>custom/conf/app.ini</code>就可以！在<code>custom/conf/app.ini</code>文件中修改相应选项的值即可。</p>
+<p>例如，需要改变仓库根目录的路径：</p>
+<pre><code>[repository]
+ROOT = /home/jiahuachen/gogs-repositories
+</code></pre>
+<p>当然，您也可以修改数据库配置：</p>
+<pre><code>[database]
+PASSWD = root
+</code></pre>
+<h4 id="为什么要这么做？"><a href="#为什么要这么做？" class="headerlink" title="为什么要这么做？"></a>为什么要这么做？</h4><p>乍一看，这么做有些复杂，但是这么做可以有效地保护您的自定义配置不被破坏：</p>
+<ul>
+<li>从二进制安装的用户，可以直接替换二进制及其它文件而不至于重新编写自定义配置。</li>
+<li>从源码安装的用户，可以避免由于版本管理系统导致的文件修改冲突。</li>
+</ul>
+<h3 id="运行-Gogs-服务"><a href="#运行-Gogs-服务" class="headerlink" title="运行 Gogs 服务"></a>运行 Gogs 服务</h3><h4 id="开发者模式"><a href="#开发者模式" class="headerlink" title="开发者模式"></a>开发者模式</h4><ul>
+<li><p>您需要在<code>custom/conf/app.ini</code>文件中将选项<code>security -&gt; INSTALL_LOCK</code>的值设置为<code>true</code>。</p>
+</li>
+<li><p>您可以使用超能的<code>make</code>命令：</p>
+<pre><code>$ make
+$ ./gogs web
+</code></pre>
+<h3 id="部署模式"><a href="#部署模式" class="headerlink" title="部署模式"></a>部署模式</h3><p>脚本均放置在<code>scripts</code>目录，但请在仓库根目录执行它们</p>
+</li>
+<li><p>Gogs 支持多种方式的启动：</p>
+<ul>
+<li>普通：只需执行 <code>./gogs web</code></li>
+<li>守护进程：详见 <code>scripts</code> 文件夹</li>
+</ul>
+</li>
+<li><p>然后访问 <code>/install</code> 来完成首次运行的配置工作</p>
+</li>
+</ul>
+<h2 id="配置文件手册"><a href="#配置文件手册" class="headerlink" title="配置文件手册"></a>配置文件手册</h2><p>本手册会详尽地描述有关 Gogs 配置文件的选项，帮助您更好地理解和使用 Gogs。</p>
+<p>请记住，任何修改都是发生在 <code>custom/conf/app.ini</code> 自定义配置文件中，该文件的具体位置与您的设置有关。</p>
+<p>完整的默认设置可以通过 <code>app.ini</code> 文件查看。如果您看到类似<code>%(X)s</code>字符，这是由 <code>ini </code>提供的递归取值的特性。</p>
+<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>APP_NAME</td>
+<td>应用名称，可以改成您的组织或公司名称</td>
+</tr>
+<tr>
+<td>RUN_USER</td>
+<td>运行应用的用户名称，我们建议您使用 git，但如果您在个人计算机上运行 Gogs，请修改为您的系统用户名称。如果没有正确设置这个值，很可能导致您的应用崩溃</td>
+</tr>
+<tr>
+<td>RUN_MODE</td>
+<td>鉴于性能和其它考虑，建议在部署环境下修改为 prod 模式。在您完成安装操作时，该值也会被设置为 prod</td>
+</tr>
+</tbody></table>
+<h4 id="服务器-server"><a href="#服务器-server" class="headerlink" title="服务器 (server)"></a>服务器 (<code>server</code>)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PROTOCOL</td>
+<td>http 或 https</td>
+</tr>
+<tr>
+<td>DOMAIN</td>
+<td>服务器域名</td>
+</tr>
+<tr>
+<td>ROOT_URL</td>
+<td>公开的完整 URL 路径</td>
+</tr>
+<tr>
+<td>HTTP_ADDR</td>
+<td>应用 HTTP 监听地址</td>
+</tr>
+<tr>
+<td>HTTP_PORT</td>
+<td>应用 HTTP 监听端口号</td>
+</tr>
+<tr>
+<td>UNIX_SOCKET_PERMISSION</td>
+<td>Unix 套接字文件的权限</td>
+</tr>
+<tr>
+<td>LOCAL_ROOT_URL</td>
+<td>用于 Gogs 工作进程（如：SSH）回访应用的本地（DMZ）URL，一般情况下请保持默认值，除非您的 SSH 服务器节点与 HTTP 并不是同一个节点入口</td>
+</tr>
+<tr>
+<td>DISABLE_SSH</td>
+<td>当 SSH 功能不可用时可以禁用</td>
+</tr>
+<tr>
+<td>START_SSH_SERVER</td>
+<td>启用该选项来启动内置 SSH 服务器</td>
+</tr>
+<tr>
+<td>SSH_DOMAIN</td>
+<td>允许公用网络访问 SSH 的域名</td>
+</tr>
+<tr>
+<td>SSH_PORT</td>
+<td>SSH 端口号，如果不为 22 的话可以在此修改</td>
+</tr>
+<tr>
+<td>SSH_LISTEN_HOST</td>
+<td>内置 SSH 服务器监听的地址</td>
+</tr>
+<tr>
+<td>SSH_LISTEN_PORT</td>
+<td>内置 SSH 服务器监听的端口</td>
+</tr>
+<tr>
+<td>SSH_ROOT_PATH</td>
+<td>SSH 根目录，一般为 ~&#x2F;.ssh，但必须填写为 &#x2F;home&#x2F;git&#x2F;.ssh</td>
+</tr>
+<tr>
+<td>REWRITE_AUTHORIZED_KEYS_AT_START</td>
+<td>激活该选项以在应用启动时自动重写 authorized_keys 文件，该选项在使用内置 SSH 服务器时将会被自动禁用</td>
+</tr>
+<tr>
+<td>SSH_KEY_TEST_PATH</td>
+<td>用于测试 SSH 公钥的临时目录</td>
+</tr>
+<tr>
+<td>SSH_KEYGEN_PATH	ssh-keygen</td>
+<td>程序的路径，默认为 ssh-keygen 即通过系统路径查找</td>
+</tr>
+<tr>
+<td>MINIMUM_KEY_SIZE_CHECK</td>
+<td>指定不同类型的公钥的最小密钥大小</td>
+</tr>
+<tr>
+<td>OFFLINE_MODE</td>
+<td>激活该选项来禁止从 CDN 获取静态资源，同时 Gravatar 服务也将被自动禁用</td>
+</tr>
+<tr>
+<td>DISABLE_ROUTER_LOG</td>
+<td>激活该选项来禁止打印路由日志</td>
+</tr>
+<tr>
+<td>CERT_FILE</td>
+<td>HTTPS 授权文件路径</td>
+</tr>
+<tr>
+<td>KEY_FILE</td>
+<td>HTTPS 的密钥文件路径</td>
+</tr>
+<tr>
+<td>STATIC_ROOT_PATH</td>
+<td>模板文件和静态文件的上级目录，默认为应用二进制所在的位置</td>
+</tr>
+<tr>
+<td>APP_DATA_PATH</td>
+<td>应用内部数据的存放目录</td>
+</tr>
+<tr>
+<td>ENABLE_GZIP</td>
+<td>激活该选项来启用应用级别 GZIP 支持</td>
+</tr>
+<tr>
+<td>LANDING_PAGE</td>
+<td>未登录用户的默认首页，可以是 home 或 explore（探索页）</td>
+</tr>
+</tbody></table>
+<h4 id="仓库-repository"><a href="#仓库-repository" class="headerlink" title="仓库 (repository)"></a>仓库 (repository)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ROOT</td>
+<td>用户仓库存储根目录，必须为绝对路径，默认为 ~&#x2F;<user name>&#x2F;gogs-repositories</td>
+</tr>
+<tr>
+<td>SCRIPT_TYPE</td>
+<td>系统脚本类型，一般情况下均为 bash，但有些用户反应只能使用 sh</td>
+</tr>
+<tr>
+<td>ANSI_CHARSET</td>
+<td>当遇到无法识别的字符集时使用的默认字符集</td>
+</tr>
+<tr>
+<td>FORCE_PRIVATE</td>
+<td>强制要求所有新建的仓库都是私有的</td>
+</tr>
+<tr>
+<td>MAX_CREATION_LIMIT</td>
+<td>全局默认的每个用户可创建创建仓库上限，-1 表示无限制</td>
+</tr>
+<tr>
+<td>PREFERRED_LICENSES</td>
+<td>建议用户首选的授权类型</td>
+</tr>
+<tr>
+<td>DISABLE_HTTP_GIT</td>
+<td>激活该选项来禁止用户通过 HTTP 对 Git 仓库进行交互操作，即用户只能通过 SSH 操作</td>
+</tr>
+<tr>
+<td>ENABLE_LOCAL_PATH_MIGRATION</td>
+<td>激活该选项来启用本地路径迁移仓库功能。启动后默认只有管理员可以使用，普通用户必须经由管理员授权</td>
+</tr>
+<tr>
+<td>ENABLE_RAW_FILE_RENDER_MODE</td>
+<td>激活该选项来启用在查看原始数据时对页面进行真实渲染，例如渲染实际的 HTML 页面，有潜在安全隐患</td>
+</tr>
+</tbody></table>
+<h4 id="仓库-编辑器-repository-editor"><a href="#仓库-编辑器-repository-editor" class="headerlink" title="仓库 - 编辑器 (repository.editor)"></a>仓库 - 编辑器 (repository.editor)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LINE_WRAP_EXTENSIONS</td>
+<td>需要显示为行包装的文件名后缀，通过逗号分隔。如果是无后缀名的文件，则单独放置一个逗号，例如：<code>.txt,</code></td>
+</tr>
+</tbody></table>
+<h4 id="仓库-文件上传-repository-upload"><a href="#仓库-文件上传-repository-upload" class="headerlink" title="仓库 - 文件上传 (repository.upload)"></a>仓库 - 文件上传 (repository.upload)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>激活该选项来启用仓库文件上传功能</td>
+</tr>
+<tr>
+<td>TEMP_PATH</td>
+<td>文件上传的临时存放目录</td>
+</tr>
+<tr>
+<td>ALLOWED_TYPES</td>
+<td>允许上传的文件类型（例如：”image&#x2F;jpeg</td>
+</tr>
+<tr>
+<td>FILE_MAX_SIZE</td>
+<td>单个上传的文件的最大体积，以 MB 为单位</td>
+</tr>
+<tr>
+<td>MAX_FILES</td>
+<td>单次同时上传的最多文件个数</td>
+</tr>
+</tbody></table>
+<h4 id="版本发布-附件-release-attachment"><a href="#版本发布-附件-release-attachment" class="headerlink" title="版本发布 - 附件 (release.attachment)"></a>版本发布 - 附件 (release.attachment)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>激活该选项来启用版本发布附件功能</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>存放附件的路径</td>
+</tr>
+<tr>
+<td>ALLOWED_TYPES</td>
+<td>允许上传的 MIME 类型，例如 “image&#x2F;jpeg</td>
+</tr>
+<tr>
+<td>MAX_SIZE</td>
+<td>最大允许上传的附件体积，单位为 MB，例如 32</td>
+</tr>
+<tr>
+<td>MAX_FILES</td>
+<td>最大允许一次性上传的附件个数，例如 10</td>
+</tr>
+</tbody></table>
+<h4 id="Markdown-markdown"><a href="#Markdown-markdown" class="headerlink" title="Markdown (markdown)"></a>Markdown (markdown)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLE_HARD_LINE_BREAK</td>
+<td>指示是否启用硬性换行扩展</td>
+</tr>
+<tr>
+<td>CUSTOM_URL_SCHEMES</td>
+<td>允许被解析为链接的自定义 URL 方案，例如 git（用于 git:&#x2F;&#x2F;）和magnet（用于 magnet:&#x2F;&#x2F;）</td>
+</tr>
+<tr>
+<td>FILE_EXTENSIONS</td>
+<td>需要被渲染为 Markdown 格式的文件名后缀，通过逗号分隔。如果是无后缀名的文件，则单独放置一个逗号，例如：<code>.markdown,</code></td>
+</tr>
+</tbody></table>
+<h4 id="Smartypants-smartypants"><a href="#Smartypants-smartypants" class="headerlink" title="Smartypants (smartypants)"></a>Smartypants (smartypants)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>指示是否启用 Smartypants 扩展</td>
+</tr>
+</tbody></table>
+<h4 id="HTTP-http"><a href="#HTTP-http" class="headerlink" title="HTTP (http)"></a>HTTP (http)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACCESS_CONTROL_ALLOW_ORIGIN</td>
+<td>头信息 Access-Control-Allow-Origin 的自定义值，默认为空，即不响应此头信息</td>
+</tr>
+</tbody></table>
+<h4 id="数据库-database"><a href="#数据库-database" class="headerlink" title="数据库 (database)"></a>数据库 (database)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DB_TYPE</td>
+<td>数据库类型，可以是 mysql、postgres、mssql 或 sqlite3</td>
+</tr>
+<tr>
+<td>HOST</td>
+<td>数据库主机地址与端口</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>数据库名称</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>数据库用户名</td>
+</tr>
+<tr>
+<td>PASSWD</td>
+<td>数据库用户密码</td>
+</tr>
+<tr>
+<td>SSL_MODE</td>
+<td>仅限 PostgreSQL 使用</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>仅限 SQLite3 使用，数据库文件路径</td>
+</tr>
+</tbody></table>
+<h4 id="应用管理-admin"><a href="#应用管理-admin" class="headerlink" title="应用管理 (admin)"></a>应用管理 (admin)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DISABLE_REGULAR_ORG_CREATION	激活该选项来禁止普通用户（非管理员）创建组织</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="安全-security"><a href="#安全-security" class="headerlink" title="安全 (security)"></a>安全 (security)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INSTALL_LOCK</td>
+<td>用于指示是否允许访问安装页面（该页面可以设置管理员帐号，因此该选项非常重要）</td>
+</tr>
+<tr>
+<td>SECRET_KEY</td>
+<td>全局的加密密钥，务必修改该值以确保您的服务器安全（会在每次安装时自动生成随机字符串）</td>
+</tr>
+<tr>
+<td>LOGIN_REMEMBER_DAYS</td>
+<td>记住登录的天数</td>
+</tr>
+<tr>
+<td>COOKIE_USERNAME</td>
+<td>记录用户名的 Cookie 名称</td>
+</tr>
+<tr>
+<td>COOKIE_REMEMBER_NAME</td>
+<td>记录用户自动登录信息的 Cookie 名称</td>
+</tr>
+<tr>
+<td>REVERSE_PROXY_AUTHENTICATION_USER</td>
+<td>反向代理认证用户的 Header 字段名</td>
+</tr>
+</tbody></table>
+<h4 id="服务-service"><a href="#服务-service" class="headerlink" title="服务 (service)"></a>服务 (service)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACTIVE_CODE_LIVE_MINUTES</td>
+<td>激活码的有效期，单位为分钟</td>
+</tr>
+<tr>
+<td>RESET_PASSWD_CODE_LIVE_MINUTES</td>
+<td>重置密码的有效期，单位为分钟</td>
+</tr>
+<tr>
+<td>REGISTER_EMAIL_CONFIRM</td>
+<td>激活该选项来要求注册用户必须验证邮箱，要求已启用 Mailer</td>
+</tr>
+<tr>
+<td>DISABLE_REGISTRATION</td>
+<td>激活该选项来禁止用户注册功能，只能由管理员创建帐号</td>
+</tr>
+<tr>
+<td>SHOW_REGISTRATION_BUTTON</td>
+<td>用于指示是否显示注册按钮</td>
+</tr>
+<tr>
+<td>REQUIRE_SIGNIN_VIEW</td>
+<td>激活该选项来要求用户必须登录才能浏览任何页面</td>
+</tr>
+<tr>
+<td>ENABLE_CACHE_AVATAR</td>
+<td>激活该选项来缓存 Gravatar 的头像</td>
+</tr>
+<tr>
+<td>ENABLE_NOTIFY_MAIL</td>
+<td>激活该选项来发送通知邮件给关注者，例如创建 issue 时，要求已启用 Mailer</td>
+</tr>
+<tr>
+<td>ENABLE_REVERSE_PROXY_AUTHENTICATION</td>
+<td>激活该选项来开启反向代理用户认证，请从 #165 了解更多信息</td>
+</tr>
+<tr>
+<td>ENABLE_REVERSE_PROXY_AUTO_REGISTRATION</td>
+<td>激活该选项来开启反向代理用户认证的自动注册功能</td>
+</tr>
+<tr>
+<td>DISABLE_MINIMUM_KEY_SIZE_CHECK</td>
+<td>激活该选项来禁止检查响应类型的密钥最小长度</td>
+</tr>
+<tr>
+<td>ENABLE_CAPTCHA</td>
+<td>激活该选项以在用户注册时要求输入验证码</td>
+</tr>
+</tbody></table>
+<h4 id="Web-钩子-webhook"><a href="#Web-钩子-webhook" class="headerlink" title="Web 钩子 (webhook)"></a>Web 钩子 (webhook)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TYPES</td>
+<td>启动的 Web 钩子类型，可以是 gogs、slack、discord或dingtalk</td>
+</tr>
+<tr>
+<td>QUEUE_LENGTH</td>
+<td>Web钩子队列长度，如果发现部分Webhook未能成功触发，可考虑增加该值</td>
+</tr>
+<tr>
+<td>DELIVER_TIMEOUT</td>
+<td>发送通知的超时时间，以秒为单位</td>
+</tr>
+<tr>
+<td>SKIP_TLS_VERIFY</td>
+<td>指示是否允许向具有非信任证书的地址发送通知</td>
+</tr>
+<tr>
+<td>PAGING_NUM</td>
+<td>Web 钩子历史页面每页显示记录条数</td>
+</tr>
+</tbody></table>
+<h4 id="邮件-mailer"><a href="#邮件-mailer" class="headerlink" title="邮件 (mailer)"></a>邮件 (mailer)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>启用该选项以激活邮件服务</td>
+</tr>
+<tr>
+<td>SUBJECT_PREFIX</td>
+<td>邮件标题的前缀</td>
+</tr>
+<tr>
+<td>HOST</td>
+<td>SMTP 主机地址与端口</td>
+</tr>
+<tr>
+<td>DISABLE_HELO</td>
+<td>禁用 HELO 操作</td>
+</tr>
+<tr>
+<td>HELO_HOSTNAME</td>
+<td>HELO 操作的自定义主机名</td>
+</tr>
+<tr>
+<td>SKIP_VERIFY</td>
+<td>不验证自签发证书的有效性</td>
+</tr>
+<tr>
+<td>FROM</td>
+<td>邮箱的来自地址，遵循 RFC 5322规范，可以是一个单纯的邮箱地址或者 “名字” <a href="mailto:&#101;&#x6d;&#x61;&#105;&#x6c;&#x40;&#x65;&#x78;&#x61;&#109;&#x70;&#108;&#x65;&#46;&#99;&#111;&#109;">&#101;&#x6d;&#x61;&#105;&#x6c;&#x40;&#x65;&#x78;&#x61;&#109;&#x70;&#108;&#x65;&#46;&#99;&#111;&#109;</a> 的形式</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>邮箱用户名</td>
+</tr>
+<tr>
+<td>PASSWD</td>
+<td>邮箱密码</td>
+</tr>
+<tr>
+<td>USE_PLAIN_TEXT</td>
+<td>使用 text&#x2F;plain 作为邮件内容格式</td>
+</tr>
+<tr>
+<td>备注：Gogs 仅支持使用 STARTTLS 的 SMTP 协议</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="缓存-cache"><a href="#缓存-cache" class="headerlink" title="缓存 (cache)"></a>缓存 (cache)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADAPTER</td>
+<td>缓存引擎适配器，可以为 memory、redis 或 memcache。如果您使用 redis 或 memcache，请确保使用 -tags 选项重新构建所有依赖，例如：go build -tags&#x3D;’redis’</td>
+</tr>
+<tr>
+<td>INTERVAL</td>
+<td>仅限内存缓存使用，GC 周期，单位为秒</td>
+</tr>
+<tr>
+<td>HOST</td>
+<td>仅限 redis 和 memcache 使用，主机地址和端口号</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Redis：network&#x3D;tcp,addr&#x3D;127.0.0.1:6379,password&#x3D;macaron,db&#x3D;0,pool_size&#x3D;100,idle_timeout&#x3D;180</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Memache：127.0.0.1:9090;127.0.0.1:9091</td>
+</tr>
+</tbody></table>
+<h4 id="会话-session"><a href="#会话-session" class="headerlink" title="会话 (session)"></a>会话 (session)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PROVIDER</td>
+<td>Session 引擎提供者，可以是 memory、file、redis 或 mysql</td>
+</tr>
+<tr>
+<td>PROVIDER_CONFIG</td>
+<td>如果提供者为 file，则为文件根目录；如果为其它提供者，则为主机地址和端口号</td>
+</tr>
+<tr>
+<td>COOKIE_SECURE</td>
+<td>激活该选项以要求所有 session 操作均通过 HTTPS</td>
+</tr>
+<tr>
+<td>GC_INTERVAL_TIME</td>
+<td>GC 周期，单位为秒</td>
+</tr>
+</tbody></table>
+<h4 id="图片-picture"><a href="#图片-picture" class="headerlink" title="图片 (picture)"></a>图片 (picture)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVATAR_UPLOAD_PATH</td>
+<td>存放用户上传头像的目录</td>
+</tr>
+<tr>
+<td>GRAVATAR_SOURCE</td>
+<td>可以是 gravatar、duoshuo 或任何 URL，例如：<a target="_blank" rel="noopener" href="http://cn.gravatar.com/avatar/">http://cn.gravatar.com/avatar/</a></td>
+</tr>
+<tr>
+<td>DISABLE_GRAVATAR</td>
+<td>激活该选项来仅使用本地头像</td>
+</tr>
+<tr>
+<td>ENABLE_FEDERATED_AVATAR</td>
+<td>激活该选项来启用 Federated 头像服务（<a target="_blank" rel="noopener" href="http://www.libravatar.org),当/">http://www.libravatar.org），当</a> Gravatar 被禁用时此选项无法生效</td>
+</tr>
+</tbody></table>
+<h4 id="附件-attachment"><a href="#附件-attachment" class="headerlink" title="附件 (attachment)"></a>附件 (attachment)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>激活该选项以允许用户上传附件</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>存放附件的路径</td>
+</tr>
+<tr>
+<td>ALLOWED_TYPES</td>
+<td>允许上传的 MIME 类型，例如 “image&#x2F;jpeg</td>
+</tr>
+<tr>
+<td>MAX_SIZE</td>
+<td>最大允许上传的附件体积，单位为 MB，例如 4</td>
+</tr>
+<tr>
+<td>MAX_FILES</td>
+<td>最大允许一次性上传的附件个数，例如 5</td>
+</tr>
+</tbody></table>
+<h4 id="时间-time"><a href="#时间-time" class="headerlink" title="时间 (time)"></a>时间 (time)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FORMAT</td>
+<td>指定日期的输出格式，默认为 RFC1123，其它可选的格式为 ANSIC、UnixDate、RubyDate、RFC822、RFC822Z、RFC850、RFC1123、RFC1123Z、RFC3339、RFC3339Nano、Kitchen、Stamp、StampMilli、StampMicro 和 StampNano。访问 <a target="_blank" rel="noopener" href="http://golang.org/pkg/time/#pkg-constants">http://golang.org/pkg/time/#pkg-constants</a> 查看详情</td>
+</tr>
+</tbody></table>
+<h4 id="日志-log"><a href="#日志-log" class="headerlink" title="日志 (log)"></a>日志 (log)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ROOT_PATH</td>
+<td>日志文件的根目录</td>
+</tr>
+<tr>
+<td>MODE</td>
+<td>日志记录模式，默认为 console。如果想要开启多模式，请使用逗号分割，例如：”console, file”</td>
+</tr>
+<tr>
+<td>LEVEL</td>
+<td>基本日志级别，默认为 Trace</td>
+</tr>
+</tbody></table>
+<h4 id="日志-控制台-log-console"><a href="#日志-控制台-log-console" class="headerlink" title="日志 - 控制台 (log.console)"></a>日志 - 控制台 (log.console)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LEVEL</td>
+<td>控制台日志级别，留空则继承父值</td>
+</tr>
+</tbody></table>
+<h4 id="日志-文件-log-file"><a href="#日志-文件-log-file" class="headerlink" title="日志 - 文件 (log.file)"></a>日志 - 文件 (log.file)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LEVEL</td>
+<td>文件日志级别，留空则继承父值</td>
+</tr>
+<tr>
+<td>LOG_ROTATE</td>
+<td>激活该选项以启用日志文件自转</td>
+</tr>
+<tr>
+<td>DAILY_ROTATE</td>
+<td>激活该选项以进行日常自转</td>
+</tr>
+<tr>
+<td>MAX_SIZE_SHIFT</td>
+<td>自转需要达到的最大文件体积，使用位左移，默认为 28 即 1 &lt;&lt; 28，表示 256MB</td>
+</tr>
+<tr>
+<td>MAX_LINES</td>
+<td>自转需要达到的最大文件行数，默认为 1000000</td>
+</tr>
+<tr>
+<td>MAX_DAYS</td>
+<td>保留自转文件的最长期限，默认为 7 天后删除</td>
+</tr>
+</tbody></table>
+<h4 id="日志-Slack-log-slack"><a href="#日志-Slack-log-slack" class="headerlink" title="日志 - Slack (log.slack)"></a>日志 - Slack (log.slack)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LEVEL</td>
+<td>Slack 日志级别，留空则继承父值</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>Slack Web 钩子 URL</td>
+</tr>
+</tbody></table>
+<h4 id="日志-Discord-log-discord"><a href="#日志-Discord-log-discord" class="headerlink" title="日志 - Discord (log.discord)"></a>日志 - Discord (log.discord)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LEVEL</td>
+<td>Discord 日志级别，留空则继承父值</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>Discord Web 钩子 URL</td>
+</tr>
+<tr>
+<td>USERNAME</td>
+<td>在 Web 钩子中显示的用户名</td>
+</tr>
+</tbody></table>
+<h4 id="Cron-cron"><a href="#Cron-cron" class="headerlink" title="Cron (cron)"></a>Cron (cron)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>激活该选项以允许周期性运行 Cron 任务</td>
+</tr>
+<tr>
+<td>RUN_AT_START</td>
+<td>激活该选项以允许在启动时执行 Cron 任务</td>
+</tr>
+</tbody></table>
+<h4 id="Cron-更新镜像-cron-update-mirrors"><a href="#Cron-更新镜像-cron-update-mirrors" class="headerlink" title="Cron - 更新镜像 (cron.update_mirrors)"></a>Cron - 更新镜像 (cron.update_mirrors)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SCHEDULE</td>
+<td>定时更新仓库镜像的 Cron 语法，例如：@every 1h</td>
+</tr>
+</tbody></table>
+<h4 id="Cron-仓库健康检查-cron-repo-health-check"><a href="#Cron-仓库健康检查-cron-repo-health-check" class="headerlink" title="Cron - 仓库健康检查 (cron.repo_health_check)"></a>Cron - 仓库健康检查 (cron.repo_health_check)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SCHEDULE</td>
+<td>定时进行仓库健康检查的 Cron 语法，例如：@every 24h</td>
+</tr>
+<tr>
+<td>TIMEOUT</td>
+<td>仓库健康检查超时的定义语法，例如：60s</td>
+</tr>
+<tr>
+<td>ARGS</td>
+<td>git fsck 命令的参数，例如：–unreachable –tags</td>
+</tr>
+</tbody></table>
+<h4 id="Cron-仓库统计检查-cron-check-repo-stats"><a href="#Cron-仓库统计检查-cron-check-repo-stats" class="headerlink" title="Cron - 仓库统计检查 (cron.check_repo_stats)"></a>Cron - 仓库统计检查 (cron.check_repo_stats)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RUN_AT_START</td>
+<td>激活该选项以在启动时执行仓库统计检查</td>
+</tr>
+<tr>
+<td>SCHEDULE</td>
+<td>定时进行仓库统计检查的 Cron 语法，例如：@every 24h</td>
+</tr>
+</tbody></table>
+<h4 id="Cron-仓库归档清理-cron-repo-archive-cleanup"><a href="#Cron-仓库归档清理-cron-repo-archive-cleanup" class="headerlink" title="Cron - 仓库归档清理 (cron.repo_archive_cleanup)"></a>Cron - 仓库归档清理 (cron.repo_archive_cleanup)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RUN_AT_START</td>
+<td>激活该选项以在启动时执行仓库归档清理</td>
+</tr>
+<tr>
+<td>SCHEDULE</td>
+<td>定时进行仓库归档清理的 Cron 语法，例如：@every 24h</td>
+</tr>
+<tr>
+<td>OLDER_THAN</td>
+<td>仓库归档的文件有效期，过期的归档将被清理，例如：24h</td>
+</tr>
+</tbody></table>
+<h4 id="Git-git"><a href="#Git-git" class="headerlink" title="Git (git)"></a>Git (git)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DISABLE_DIFF_HIGHLIGHT</td>
+<td>激活该选项以禁用行内差异高亮</td>
+</tr>
+<tr>
+<td>MAX_GIT_DIFF_LINES</td>
+<td>差异对比页面单个文件显示的最大行数</td>
+</tr>
+<tr>
+<td>MAX_GIT_DIFF_LINE_CHARACTERS</td>
+<td>差异对比页面单行显示的最大字符数</td>
+</tr>
+<tr>
+<td>MAX_GIT_DIFF_FILES</td>
+<td>差异对比页面文件显示的最多个数</td>
+</tr>
+<tr>
+<td>GC_ARGS</td>
+<td>git gc 命令的参数，例如：–aggressive –auto</td>
+</tr>
+</tbody></table>
+<h4 id="Git-超时-git-timeout"><a href="#Git-超时-git-timeout" class="headerlink" title="Git - 超时 (git.timeout)"></a>Git - 超时 (git.timeout)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MIGRATE</td>
+<td>仓库迁移操作超时，默认为 600 秒</td>
+</tr>
+<tr>
+<td>MIRROR</td>
+<td>仓库镜像同步操作超时，默认为 300 秒</td>
+</tr>
+<tr>
+<td>CLONE</td>
+<td>仓库克隆操作超时，默认为 300 秒</td>
+</tr>
+<tr>
+<td>PULL</td>
+<td>仓库拉取操作超时，默认为 300 秒</td>
+</tr>
+<tr>
+<td>GC</td>
+<td>仓库垃圾回收操作超时，默认为 60 秒</td>
+</tr>
+</tbody></table>
+<h4 id="UI-ui"><a href="#UI-ui" class="headerlink" title="UI (ui)"></a>UI (ui)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EXPLORE_PAGING_NUM</td>
+<td>探索页面每页显示仓库的数量</td>
+</tr>
+<tr>
+<td>ISSUE_PAGING_NUM</td>
+<td>每页显示工单（Issue）的数量（应用到所有以列表形式显示工单的页面）</td>
+</tr>
+<tr>
+<td>FEED_MAX_COMMIT_NUM</td>
+<td>一条最新活动中显示代码提交（Commit）的最大数量</td>
+</tr>
+<tr>
+<td>THEME_COLOR_META_TAG</td>
+<td>被用于 Android &gt;&#x3D; 5.0 版本 “theme-color” 标记的值，无效的值将被忽略并使用默认值（查看详情）</td>
+</tr>
+<tr>
+<td>MAX_DISPLAY_FILE_SIZE</td>
+<td>显示到页面的最大文件体积（Byte）</td>
+</tr>
+</tbody></table>
+<h4 id="UI-Admin-ui-admin"><a href="#UI-Admin-ui-admin" class="headerlink" title="UI - Admin (ui.admin)"></a>UI - Admin (ui.admin)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER_PAGING_NUM</td>
+<td>用户管理页面每页显示记录条数</td>
+</tr>
+<tr>
+<td>REPO_PAGING_NUM</td>
+<td>仓库管理页面每页显示记录条数</td>
+</tr>
+<tr>
+<td>NOTICE_PAGING_NUM</td>
+<td>系统提示管理页面每页显示记录条数</td>
+</tr>
+<tr>
+<td>ORG_PAGING_NUM</td>
+<td>组织管理页面每页显示记录条数</td>
+</tr>
+</tbody></table>
+<h4 id="Prometheus-prometheus"><a href="#Prometheus-prometheus" class="headerlink" title="Prometheus (prometheus)"></a>Prometheus (prometheus)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ENABLED</td>
+<td>激活该选项以启用 Prometheus 监控信息，默认为 true</td>
+</tr>
+<tr>
+<td>ENABLE_BASIC_AUTH</td>
+<td>激活该选项以启用 HTTP 基本认证保护监控信息数据，默认为 false</td>
+</tr>
+<tr>
+<td>BASIC_AUTH_USERNAME</td>
+<td>HTTP 基本认证的用户名</td>
+</tr>
+<tr>
+<td>BASIC_AUTH_PASSWORD</td>
+<td>HTTP 基本认证的密码</td>
+</tr>
+</tbody></table>
+<h4 id="其他-other"><a href="#其他-other" class="headerlink" title="其他 (other)"></a>其他 (other)</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SHOW_FOOTER_BRANDING</td>
+<td>激活该选项以在页脚显示 Gogs 推广信息</td>
+</tr>
+<tr>
+<td>SHOW_FOOTER_VERSION</td>
+<td>激活该选项以在页脚显示 Gogs 版本信息</td>
+</tr>
+<tr>
+<td>SHOW_FOOTER_TEMPLATE_LOAD_TIME</td>
+<td>激活该选项以在页脚显示 Gogs 模板加载时间</td>
+</tr>
+</tbody></table>
+<h4 id="ref"><a href="#ref" class="headerlink" title="ref:"></a>ref:</h4><p>[1] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/sanduzxcvbnm/p/11351991.html">https://www.cnblogs.com/sanduzxcvbnm/p/11351991.html</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">DashDreams</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.dashdreams.com/p/7dd2a61d.html">https://blog.dashdreams.com/p/7dd2a61d.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">DashDreams</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Gogs/">
+                                    <span class="chip bg-color">Gogs</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">Your appreciation is the driving force for me to move forward.</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/p/a204a128.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="OSI模型">
+                        
+                        <span class="card-title">OSI模型</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Network/" class="post-category">
+                                    Network
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/OSI/">
+                        <span class="chip bg-color">OSI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/p/ea0e48ad.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Build a Git Using Gogs On RaspberryPi with Docker Employ Frp with Caddy Proxy and CDN in Cloudflare">
+                        
+                        <span class="card-title">Build a Git Using Gogs On RaspberryPi with Docker Employ Frp with Caddy Proxy and CDN in Cloudflare</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Container/" class="post-category">
+                                    Container
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Gogs/">
+                        <span class="chip bg-color">Gogs</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">DashDreams</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://gitlab.dashdreams.com/Haoran.Qi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:Haoran.Qi@Outlook.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

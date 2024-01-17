@@ -1,0 +1,1277 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Systemd初识, Day Day Up!">
+    <meta name="description" content="Recording Process">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Systemd初识 | Day Day Up!</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Day Day Up!</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Day Day Up!</div>
+        <div class="logo-desc">
+            
+            Recording Process
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Systemd初识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Systemd/">
+                                <span class="chip bg-color">Systemd</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-07-27
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-01-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.1k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Systemd初步认识"><a href="#Systemd初步认识" class="headerlink" title="Systemd初步认识"></a>Systemd初步认识</h1><h2 id="1-Systemd目录"><a href="#1-Systemd目录" class="headerlink" title="1. Systemd目录"></a>1. Systemd目录</h2><p>Unit 文件按照 Systemd 约定，应该被放置指定的三个系统目录之一中。这三个目录是有优先级的，如下所示，越靠上的优先级越高。因此，在三个目录中有同名文件的时候，只有优先级最高的目录里的那个文件会被使用。</p>
+<ul>
+<li>&#x2F;etc&#x2F;systemd&#x2F;system：系统或用户自定义的配置文件</li>
+<li>&#x2F;run&#x2F;systemd&#x2F;system：软件运行时生成的配置文件</li>
+<li>&#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system：系统或第三方软件安装时添加的配置文件。</li>
+</ul>
+<p>Systemd 默认从目录 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F; 读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;，真正的配置文件存放在那个目录。</p>
+<h2 id="2-Unit-amp-Target"><a href="#2-Unit-amp-Target" class="headerlink" title="2. Unit &amp; Target"></a>2. Unit &amp; Target</h2><p>Unit 是 Systemd 管理系统资源的基本单元，可以认为每个系统资源就是一个 Unit，并使用一个 Unit 文件定义。在 Unit 文件中需要包含相应服务的描述、属性以及需要运行的命令。</p>
+<p>Target 是 Systemd 中用于指定系统资源启动组的方式，相当于 SysV-init 中的运行级别。</p>
+<p>简单说，Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于”状态点”，启动某个 Target 就好比启动到某种状态。</p>
+<h3 id="2-1-Systemd-Service-Unit"><a href="#2-1-Systemd-Service-Unit" class="headerlink" title="2.1 Systemd Service Unit"></a>2.1 Systemd Service Unit</h3><pre><code>[Unit]
+Description=Hello World
+After=docker.service
+Requires=docker.service
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill busybox1
+ExecStartPre=-/usr/bin/docker rm busybox1
+ExecStartPre=/usr/bin/docker pull busybox
+ExecStart=/usr/bin/docker run --name busybox1 busybox /bin/sh -c
+ExecStop=&quot;/usr/bin/docker stop busybox1&quot;
+ExecStopPost=&quot;/usr/bin/docker rm busybox1&quot;
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<ul>
+<li>Unit 和 Install 段：所有 Unit 文件通用，用于配置服务（或其它系统资源）的描述、依赖和随系统启动的方式</li>
+<li>Service 段：服务（Service）类型的 Unit 文件（后缀为 .service）特有的，用于定义服务的具体管理和操作方法</li>
+</ul>
+<h3 id="2-2-Unit"><a href="#2-2-Unit" class="headerlink" title="2.2 Unit"></a>2.2 Unit</h3><ul>
+<li>Description：描述这个 Unit 文件的信息</li>
+<li>Documentation：指定服务的文档，可以是一个或多个文档的 URL 路径</li>
+<li>Requires：依赖的其它 Unit 列表，列在其中的 Unit 模板会在这个服务启动时的同时被启动。并且，如果其中任意一个服务启动失败，这个服务也会被终止</li>
+<li>Wants：与 Requires 相似，但只是在被配置的这个 Unit 启动时，触发启动列出的每个 Unit 模块，而不去考虑这些模板启动是否成功</li>
+<li>After：与 Requires 相似，但是在后面列出的所有模块全部启动完成以后，才会启动当前的服务</li>
+<li>Before：与 After 相反，在启动指定的任务一个模块之间，都会首先确证当前服务已经运行</li>
+<li>Binds To：与 Requires 相似，失败时失败，成功时成功，但是在这些模板中有任意一个出现意外结束或重启时，这个服务也会跟着终止或重启</li>
+<li>Part Of：一个 Bind To 作用的子集，仅在列出的任务模块失败或重启时，终止或重启当前服务，而不会随列出模板的启动而启动</li>
+<li>OnFailure：当这个模板启动失败时，就会自动启动列出的每个模块</li>
+<li>Conflicts：与这个模块有冲突的模块，如果列出的模块中有已经在运行的，这个服务就不能启动，反之亦然</li>
+</ul>
+<h3 id="2-3-Service"><a href="#2-3-Service" class="headerlink" title="2.3 Service"></a>2.3 Service</h3><p>用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段分为服务生命周期和服务上下文配置两个方面。</p>
+<blockquote>
+<h4 id="a-服务生命周期控制相关"><a href="#a-服务生命周期控制相关" class="headerlink" title="a 服务生命周期控制相关"></a>a 服务生命周期控制相关</h4></blockquote>
+<ul>
+<li>Type：定义启动时的进程行为，它有以下几种值：<pre><code>Type=simple：默认值，执行ExecStart指定的命令，启动主进程
+Type=forking：以 fork 方式从父进程创建子进程，创建后父进程会立即退出
+Type=oneshot：一次性进程，Systemd 会等当前服务退出，再继续往下执行
+Type=dbus：当前服务通过D-Bus启动
+Type=notify：当前服务启动完毕，会通知Systemd，再继续往下执行
+Type=idle：若有其他任务执行完毕，当前服务才会运行
+</code></pre>
+</li>
+<li>RemainAfterExit：值为 true 或 false（默认）。当配置为 true 时，Systemd 只会负责启动服务进程，之后即便服务进程退出了，Systemd 也仍然会认为这个服务还在运行中。这个配置主要是提供给一些并非常驻内存，而是启动注册后立即退出，然后等待消息按需启动的特殊类型服务使用的。</li>
+<li>ExecStart：启动当前服务的命令</li>
+<li>ExecStartPre：启动当前服务之前执行的命令</li>
+<li>ExecStartPos：启动当前服务之后执行的命令</li>
+<li>ExecReload：重启当前服务时执行的命令</li>
+<li>ExecStop：停止当前服务时执行的命令</li>
+<li>ExecStopPost：停止当其服务之后执行的命令</li>
+<li>RestartSec：自动重启当前服务间隔的秒数</li>
+<li>Restart：定义何种情况 Systemd 会自动重启当前服务，可能的值包括 always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog</li>
+<li>TimeoutStartSec：启动服务时等待的秒数，这一配置对于使用 Docker 容器而言显得尤为重要，因其第一次运行时可能需要下载镜像，严重延时会容易被 Systemd 误判为启动失败杀死。通常，对于这种服务，将此值指定为 0，从而关闭超时检测</li>
+<li>TimeoutStopSec：停止服务时的等待秒数，如果超过这个时间仍然没有停止，Systemd 会使用 SIGKILL 信号强行杀死服务的进程</li>
+</ul>
+<blockquote>
+<h4 id="b-服务上下文配置相关"><a href="#b-服务上下文配置相关" class="headerlink" title="b 服务上下文配置相关"></a>b 服务上下文配置相关</h4></blockquote>
+<ul>
+<li>Environment：为服务指定环境变量</li>
+<li>EnvironmentFile：指定加载一个包含服务所需的环境变量的列表的文件，文件中的每一行都是一个环境变量的定义</li>
+<li>Nice：服务的进程优先级，值越小优先级越高，默认为 0。其中 -20 为最高优先级，19 为最低优先级</li>
+<li>WorkingDirectory：指定服务的工作目录</li>
+<li>RootDirectory：指定服务进程的根目录（&#x2F; 目录）。如果配置了这个参数，服务将无法访问指定目录以外的任何文件</li>
+<li>User：指定运行服务的用户</li>
+<li>Group：指定运行服务的用户组</li>
+<li>MountFlags：服务的 Mount Namespace 配置，会影响进程上下文中挂载点的信息，即服务是否会继承主机上已有挂载点，以及如果服务运行执行了挂载或卸载设备的操作，是否会真实地在主机上产生效果。可选值为 shared、slaved 或 private<pre><code>shared：服务与主机共用一个 Mount Namespace，继承主机挂载点，且服务挂载或卸载设备会真实地反映到主机上
+slave：服务使用独立的 Mount Namespace，它会继承主机挂载点，但服务对挂载点的操作只有在自己的 Namespace 内生效，不会反映到主机上
+private：服务使用独立的 Mount Namespace，它在启动时没有任何任何挂载点，服务对挂载点的操作也不会反映到主机上
+</code></pre>
+</li>
+<li>LimitCPU &#x2F; LimitSTACK &#x2F; LimitNOFILE &#x2F; LimitNPROC 等：限制特定服务的系统资源量，例如 CPU、程序堆栈、文件句柄数量、子进程数量等</li>
+</ul>
+<h3 id="2-4-Install"><a href="#2-4-Install" class="headerlink" title="2.4 Install"></a>2.4 Install</h3><p>这部分配置的目标模块通常是特定运行目标的 .target 文件，用来使得服务在系统启动时自动运行。这个区段可以包含三种启动约束：</p>
+<ul>
+<li>WantedBy：和 Unit 段的 Wants 作用相似，只有后面列出的不是服务所依赖的模块，而是依赖当前服务的模块。它的值是一个或多个 Target，当前 Unit 激活时（enable）符号链接会放入 &#x2F;etc&#x2F;systemd&#x2F;system 目录下面以 &lt;Target 名&gt; + .wants 后缀构成的子目录中，如 “&#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi-user.target.wants&#x2F;“</li>
+<li>RequiredBy：和 Unit 段的 Wants 作用相似，只有后面列出的不是服务所依赖的模块，而是依赖当前服务的模块。它的值是一个或多个 Target，当前 Unit 激活时，符号链接会放入 &#x2F;etc&#x2F;systemd&#x2F;system 目录下面以 &lt;Target 名&gt; + .required 后缀构成的子目录中</li>
+<li>Also：当前 Unit enable&#x2F;disable 时，同时 enable&#x2F;disable 的其他 Unit</li>
+<li>Alias：当前 Unit 可用于启动的别名</li>
+</ul>
+<h3 id="2-5-Unit-文件占位符"><a href="#2-5-Unit-文件占位符" class="headerlink" title="2.5 Unit 文件占位符"></a>2.5 Unit 文件占位符</h3><p>在 Unit 文件中，有时会需要使用到一些与运行环境有关的信息，例如节点 ID、运行服务的用户等。这些信息可以使用占位符来表示，然后在实际运行被动态地替换实际的值。</p>
+<ul>
+<li>%n：完整的 Unit 文件名字，包括 .service 后缀名</li>
+<li>%p：Unit 模板文件名中 @ 符号之前的部分，不包括 @ 符号</li>
+<li>%i：Unit 模板文件名中 @ 符号之后的部分，不包括 @ 符号和 .service 后缀名</li>
+<li>%t：存放系统运行文件的目录，通常是 “run”</li>
+<li>%u：运行服务的用户，如果 Unit 文件中没有指定，则默认为 root</li>
+<li>%U：运行服务的用户 ID</li>
+<li>%h：运行服务的用户 Home 目录，即 %{HOME} 环境变量的值</li>
+<li>%s：运行服务的用户默认 Shell 类型，即 %{SHELL} 环境变量的值</li>
+<li>%m：实际运行节点的 Machine ID，对于运行位置每个的服务比较有用</li>
+<li>%b：Boot ID，这是一个随机数，每个节点各不相同，并且每次节点重启时都会改变</li>
+<li>%H：实际运行节点的主机名</li>
+<li>%v：内核版本，即 “uname -r” 命令输出的内容</li>
+<li>%%：在 Unit 模板文件中表示一个普通的百分号</li>
+</ul>
+<h2 id="3-Systemd资源管理"><a href="#3-Systemd资源管理" class="headerlink" title="3. Systemd资源管理"></a>3. Systemd资源管理</h2><h3 id="3-1-Systemctl-命令"><a href="#3-1-Systemctl-命令" class="headerlink" title="3.1 Systemctl 命令"></a>3.1 Systemctl 命令</h3><h3 id="3-2-Unit-管理"><a href="#3-2-Unit-管理" class="headerlink" title="3.2 Unit 管理"></a>3.2 Unit 管理</h3><blockquote>
+<h4 id="a-查看当前系统的所有Unit"><a href="#a-查看当前系统的所有Unit" class="headerlink" title="a 查看当前系统的所有Unit"></a>a 查看当前系统的所有Unit</h4></blockquote>
+<p><code>systemctl list-units</code> # 列出正在运行的 Unit</p>
+<p><code>systemctl list-units --all</code> # 列出所有Unit，包括没有找到配置文件的或者启动失败的</p>
+<p><code>systemctl list-units --all --state=inactive</code> # 列出所有没有运行的 Unit</p>
+<p><code>systemctl list-units --failed</code> # 列出所有加载失败的 Unit</p>
+<p><code>systemctl list-units --type=service</code> # 列出所有正在运行的、类型为 service 的 Unit</p>
+<p><code>systemctl cat docker.service</code> # 查看 Unit 配置文件的内容</p>
+<blockquote>
+<h4 id="b-查看-Unit-的状态"><a href="#b-查看-Unit-的状态" class="headerlink" title="b 查看 Unit 的状态"></a>b 查看 Unit 的状态</h4><p><code>systemctl status</code> # 显示系统状态</p>
+</blockquote>
+<p><code>systemctl status bluetooth.service</code> # 显示单个 Unit 的状态</p>
+<p><code>systemctl -H root@rhel7.example.com status httpd.service</code> # 显示远程主机的某个 Unit 的状态</p>
+<blockquote>
+<h4 id="c-Unit-的管理"><a href="#c-Unit-的管理" class="headerlink" title="c Unit 的管理"></a>c Unit 的管理</h4><p><code>sudo systemctl start apache.service</code> # 立即启动一个服务</p>
+</blockquote>
+<p><code>sudo systemctl stop apache.service</code> # 立即停止一个服务</p>
+<p><code>sudo systemctl restart apache.service</code> # 重启一个服务</p>
+<p><code>sudo systemctl kill apache.service</code> # 杀死一个服务的所有子进程</p>
+<p><code>sudo systemctl reload apache.service</code> # 重新加载一个服务的配置文件</p>
+<p><code>sudo systemctl daemon-reload</code> # 重载所有修改过的配置文件</p>
+<p><code>systemctl show httpd.service</code> # 显示某个 Unit 的所有底层参数</p>
+<p><code>systemctl show -p CPUShares httpd.service</code> # 显示某个 Unit 的指定属性的值</p>
+<p><code>sudo systemctl set-property httpd.service CPUShares=500</code> # 设置某个 Unit 的指定属性</p>
+<blockquote>
+<h4 id="d-查看-Unit-的依赖关系"><a href="#d-查看-Unit-的依赖关系" class="headerlink" title="d 查看 Unit 的依赖关系"></a>d 查看 Unit 的依赖关系</h4><p><code>systemctl list-dependencies nginx.service</code> # 列出一个 Unit 的所有依赖，默认不会列出 target 类型</p>
+</blockquote>
+<p><code>systemctl list-dependencies --all nginx.service</code> # 列出一个 Unit 的所有依赖，包括 target 类型</p>
+<h3 id="3-3-服务的生命周期"><a href="#3-3-服务的生命周期" class="headerlink" title="3.3 服务的生命周期"></a>3.3 服务的生命周期</h3><p>当一个新的 Unit 文件被放入 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F; 或 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F; 目录中时，它是不会被自识识别的。</p>
+<blockquote>
+<h4 id="a-服务的激活"><a href="#a-服务的激活" class="headerlink" title="a 服务的激活"></a>a 服务的激活</h4></blockquote>
+<ul>
+<li>systemctl enable：在 &#x2F;etc&#x2F;systemd&#x2F;system&#x2F; 建立服务的符号链接，指向 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F; 中</li>
+<li>systemctl start：依次启动定义在 Unit 文件中的 ExecStartPre、ExecStart 和ExecStartPost 命令<blockquote>
+<h4 id="b-服务的启动和停止"><a href="#b-服务的启动和停止" class="headerlink" title="b 服务的启动和停止"></a>b 服务的启动和停止</h4></blockquote>
+</li>
+<li>systemctl start：依次启动定义在 Unit 文件中的 ExecStartPre、ExecStart 和 ExecStartPost 命令</li>
+<li>systemctl stop：依次停止定义在 Unit 文件中的 ExecStopPre、ExecStop 和 ExecStopPost 命令</li>
+<li>systemctl restart：重启服务</li>
+<li>systemctl kill：立即杀死服务<blockquote>
+<h4 id="c-服务的开机启动和取消"><a href="#c-服务的开机启动和取消" class="headerlink" title="c 服务的开机启动和取消"></a>c 服务的开机启动和取消</h4></blockquote>
+</li>
+<li>systemctl enable：除了激活服务以外，也可以置服务为开机启动</li>
+<li>systemctl disable：取消服务的开机启动<blockquote>
+<h4 id="d-服务的修改和移除"><a href="#d-服务的修改和移除" class="headerlink" title="d 服务的修改和移除"></a>d 服务的修改和移除</h4></blockquote>
+</li>
+<li>systemctl daemon-reload：Systemd 会将 Unit 文件的内容写到缓存中，因此当 Unit 文件被更新时，需要告诉 Systemd 重新读取所有的 Unit 文件</li>
+<li>systemctl reset-failed：移除标记为丢失的 Unit 文件。在删除 Unit 文件后，由于缓存的关系，即使通过 daemon-reload 更新了缓存，在 list-units 中依然会显示标记为 not-found 的 Unit。</li>
+</ul>
+<h3 id="3-4-Target-管理"><a href="#3-4-Target-管理" class="headerlink" title="3.4 Target 管理"></a>3.4 Target 管理</h3><p>Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。</p>
+<p>在传统的 SysV-init 启动模式里面，有 RunLevel 的概念，跟 Target 的作用很类似。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动。</p>
+<p><code>systemctl list-unit-files --type=target</code> # 查看当前系统的所有 Target</p>
+<p><code>systemctl list-dependencies multi-user.target</code> # 查看一个 Target 包含的所有 Unit</p>
+<p><code>systemctl get-default</code> # 查看启动时的默认 Target</p>
+<p><code>sudo systemctl set-default multi-user.target</code> # 设置启动时的默认 Target</p>
+<p><code>sudo systemctl isolate multi-user.target</code> # 切换 Target 时，默认不关闭前一个 Target 启动的进程，systemctl isolate 命令改变这种行为，关闭前一个 Target 里面所有不属于后一个 Target 的进程</p>
+<h3 id="3-5-日志管理"><a href="#3-5-日志管理" class="headerlink" title="3.5 日志管理"></a>3.5 日志管理</h3><p>Systemd 通过其标准日志服务 Journald 提供的配套程序 journalctl 将其管理的所有后台进程打印到 std:out（即控制台）的输出重定向到了日志文件。</p>
+<p>Systemd 的日志文件是二进制格式的，必须使用 Journald 提供的 journalctl 来查看，默认不带任何参数时会输出系统和所有后台进程的混合日志。</p>
+<p>默认日志最大限制为所在文件系统容量的 10%，可以修改 &#x2F;etc&#x2F;systemd&#x2F;journald.conf 中的 SystemMaxUse 来指定该最大限制。</p>
+<h2 id="4-Systemd-工具集"><a href="#4-Systemd-工具集" class="headerlink" title="4 Systemd 工具集"></a>4 Systemd 工具集</h2><ul>
+<li>systemctl：用于检查和控制各种系统服务和资源的状态</li>
+<li>bootctl：用于查看和管理系统启动分区</li>
+<li>hostnamectl：用于查看和修改系统的主机名和主机信息</li>
+<li>journalctl：用于查看系统日志和各类应用服务日志</li>
+<li>localectl：用于查看和管理系统的地区信息</li>
+<li>loginctl：用于管理系统已登录用户和 Session 的信息</li>
+<li>machinectl：用于操作 Systemd 容器</li>
+<li>timedatectl：用于查看和管理系统的时间和时区信息</li>
+<li>systemd-analyze 显示此次系统启动时运行每个服务所消耗的时间，可以用于分析系统启动过程中的性能瓶颈</li>
+<li>systemd-ask-password：辅助性工具，用星号屏蔽用户的任意输入，然后返回实际输入的内容</li>
+<li>systemd-cat：用于将其他命令的输出重定向到系统日志</li>
+<li>systemd-cgls：递归地显示指定 CGroup 的继承链</li>
+<li>systemd-cgtop：显示系统当前最耗资源的 CGroup 单元</li>
+<li>systemd-escape：辅助性工具，用于去除指定字符串中不能作为 Unit 文件名的字符</li>
+<li>systemd-hwdb：Systemd 的内部工具，用于更新硬件数据库</li>
+<li>systemd-delta：对比当前系统配置与默认系统配置的差异</li>
+<li>systemd-detect-virt：显示主机的虚拟化类型</li>
+<li>systemd-inhibit：用于强制延迟或禁止系统的关闭、睡眠和待机事件</li>
+<li>systemd-machine-id-setup：Systemd 的内部工具，用于给 Systemd 容器生成 ID</li>
+<li>systemd-notify：Systemd 的内部工具，用于通知服务的状态变化</li>
+<li>systemd-nspawn：用于创建 Systemd 容器</li>
+<li>systemd-path：Systemd 的内部工具，用于显示系统上下文中的各种路径配置</li>
+<li>systemd-run：用于将任意指定的命令包装成一个临时的后台服务运行</li>
+<li>systemd-stdio- bridge：Systemd 的内部 工具，用于将程序的标准输入输出重定向到系统总线</li>
+<li>systemd-tmpfiles：Systemd 的内部工具，用于创建和管理临时文件目录</li>
+<li>systemd-tty-ask-password-agent：用于响应后台服务进程发出的输入密码请求<h3 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h3>[1].<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1516125">https://cloud.tencent.com/developer/article/1516125</a></li>
+</ul>
+<p>[2].<a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">DashDreams</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.dashdreams.com/p/bad6e10f.html">https://blog.dashdreams.com/p/bad6e10f.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">DashDreams</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Systemd/">
+                                    <span class="chip bg-color">Systemd</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">Your appreciation is the driving force for me to move forward.</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/p/48a04658.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="TCPDump常用参数">
+                        
+                        <span class="card-title">TCPDump常用参数</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Network/" class="post-category">
+                                    Network
+                                </a>
+                            
+                            <a href="/categories/Network/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/TCP/">
+                        <span class="chip bg-color">TCP</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/p/37b5c1cf.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="RHEL9 RPM Fusion Repo">
+                        
+                        <span class="card-title">RHEL9 RPM Fusion Repo</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RHEL/">
+                        <span class="chip bg-color">RHEL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">DashDreams</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://gitlab.dashdreams.com/Haoran.Qi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:Haoran.Qi@Outlook.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
