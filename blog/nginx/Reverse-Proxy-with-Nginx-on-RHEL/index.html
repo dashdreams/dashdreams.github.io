@@ -12,13 +12,13 @@
         <meta name="author" content="Haoran.Qi@outlook.com ( Haoran Qi )">
       
       
-        <link rel="canonical" href="https://blog.dashdreams.com/blog/Installation/Ubuntu%E5%AE%89%E8%A3%85hexo%E7%8E%AF%E5%A2%83/">
+        <link rel="canonical" href="https://blog.dashdreams.com/blog/nginx/Reverse-Proxy-with-Nginx-on-RHEL/">
       
       
-        <link rel="prev" href="../TCP-Over-DNS-%E5%AE%9E%E7%8E%B0%E7%BB%95%E8%BF%87%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%A1%E8%B4%B9/">
+        <link rel="prev" href="../../Systemd/Execute-Scripts-on-Period-with-Systemd/">
       
       
-        <link rel="next" href="../VM-Cpp-Qt/">
+        <link rel="next" href="../../../friends/">
       
       
       <link rel="icon" href="../../../assets/images/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Ubuntu安装hexo环境 - blog.dashdreams.com</title>
+        <title>Reverse Proxy with Nginx on RHEL - blog.dashdreams.com</title>
       
     
     
@@ -99,7 +99,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ubuntuhexo" class="md-skip">
+        <a href="#reverse-proxy-with-nginx-on-rhel" class="md-skip">
           Skip to content
         </a>
       
@@ -134,7 +134,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ubuntu安装hexo环境
+              Reverse Proxy with Nginx on RHEL
             
           </span>
         </div>
@@ -749,350 +749,35 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
-            
+  
+  
+    <a href="../../Installation/Build-a-Git-Using%20Gogs%20On-RaspberryPi-with-Docker-Employ-Frp-with-Caddy-Proxy-and-CDN-in-Cloudflare/" class="md-nav__link">
+      
   
   <span class="md-ellipsis">
     Installation
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_7">
-            <span class="md-nav__icon md-icon"></span>
-            Installation
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Build-a-Git-Using%20Gogs%20On-RaspberryPi-with-Docker-Employ-Frp-with-Caddy-Proxy-and-CDN-in-Cloudflare/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build a Git Using Gogs On RaspberryPi with Docker Employ Frp with Caddy Proxy and CDN in Cloudflare
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../FFmpeg-Development-Environment/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    FFmpeg Development Environment
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Install-FRP/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Install FRP
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Install-Qt-From-Source/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Install Qt From Source
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Install-Samba-on-RHEL-CentOS-Fedora/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Install Samba on RHEL/CentOS/Fedora
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../SSL-Certificates-with-Certbot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SSL Certificates with Certbot
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Set-Raspberry-as-WiFi-Router/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Set Raspberry as WiFi Router
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../TCP-Over-DNS-%E5%AE%9E%E7%8E%B0%E7%BB%95%E8%BF%87%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%A1%E8%B4%B9/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    TCP Over DNS 实现绕过校园网计费
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+        <span class="md-nav__icon md-icon"></span>
       
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Ubuntu安装hexo环境
-  </span>
+    </a>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Ubuntu安装hexo环境
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-nodejs" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. 安装node.js
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-hexo" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 安装hexo框架
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-post" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 新建一个post
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 发布博客
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../VM-Cpp-Qt/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    VM CPP QT Compiling Environment with VSCode
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../VSCode-C-CPP-Environment/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    VSCode C/CPP Environment
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -1298,35 +983,224 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
-  
-  
-    <a href="../../nginx/Reverse-Proxy-with-Nginx-on-RHEL/" class="md-nav__link">
-      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Nginx
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            Nginx
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
-        <span class="md-nav__icon md-icon"></span>
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
-    </a>
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reverse Proxy with Nginx on RHEL
+  </span>
   
 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reverse Proxy with Nginx on RHEL
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Nginx
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-edit-nginx-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Edit Nginx Config File
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Edit Nginx Config File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-etcnginxnginxconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1). /etc/nginx/nginx.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-site-config-in-etcnginxconfdconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2). Site Config in /etc/nginx/conf.d/*.conf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ssl-with-lets-encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. SSL with Let's Encrypt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SSL with Let's Encrypt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-certbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1). Install Certbot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-opt-install-plugin-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2). (Opt.) Install plugin for nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-opt-install-plugin-for-dns-cloudflare" class="md-nav__link">
+    <span class="md-ellipsis">
+      (3). (Opt.) Install plugin for dns-cloudflare
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-applying-for-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      (4). Applying for SSL Certificate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-set-selinux-sebool" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Set SELinux sebool
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      REF
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1456,36 +1330,120 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-nodejs" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 安装node.js
+      Introduction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-hexo" class="md-nav__link">
+  <a href="#1-install-nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 安装hexo框架
+      1. Install Nginx
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-post" class="md-nav__link">
+  <a href="#2-edit-nginx-config-file" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 新建一个post
+      2. Edit Nginx Config File
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Edit Nginx Config File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-etcnginxnginxconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1). /etc/nginx/nginx.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-site-config-in-etcnginxconfdconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2). Site Config in /etc/nginx/conf.d/*.conf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ssl-with-lets-encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. SSL with Let's Encrypt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SSL with Let's Encrypt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-certbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      (1). Install Certbot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-opt-install-plugin-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      (2). (Opt.) Install plugin for nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-opt-install-plugin-for-dns-cloudflare" class="md-nav__link">
+    <span class="md-ellipsis">
+      (3). (Opt.) Install plugin for dns-cloudflare
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-applying-for-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      (4). Applying for SSL Certificate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-set-selinux-sebool" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Set SELinux sebool
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#ref" class="md-nav__link">
     <span class="md-ellipsis">
-      4. 发布博客
+      REF
     </span>
   </a>
   
@@ -1510,14 +1468,14 @@
     
     
     
-      <a href="../../../tags/#hexo" class="md-tag">HEXO</a>
+      <a href="../../../tags/#nginx" class="md-tag">Nginx</a>
     
   
 </nav>
 
 
   
-    <a href="https://Haoran.Qi:bxVBbRE9KW_qziD_ifQn@gitlab.dashdreams.com/Haoran.Qi/dashdreams/-/tree/mkdocs/docs/blog/Installation/Ubuntu安装hexo环境.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://Haoran.Qi:bxVBbRE9KW_qziD_ifQn@gitlab.dashdreams.com/Haoran.Qi/dashdreams/-/tree/mkdocs/docs/blog/nginx/Reverse-Proxy-with-Nginx-on-RHEL.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
     </a>
@@ -1526,33 +1484,112 @@
     
       
     
-    <a href="https://Haoran.Qi:bxVBbRE9KW_qziD_ifQn@gitlab.dashdreams.com/Haoran.Qi/dashdreams/-/tree/mkdocs/docs/blog/Installation/Ubuntu安装hexo环境.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://Haoran.Qi:bxVBbRE9KW_qziD_ifQn@gitlab.dashdreams.com/Haoran.Qi/dashdreams/-/tree/mkdocs/docs/blog/nginx/Reverse-Proxy-with-Nginx-on-RHEL.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
     </a>
   
 
 
-<h1 id="ubuntuhexo">Ubuntu安装hexo环境<a class="headerlink" href="#ubuntuhexo" title="Permanent link">&para;</a></h1>
-<h2 id="1-nodejs">1. 安装node.js<a class="headerlink" href="#1-nodejs" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo apt-get install npm -y
+<h1 id="reverse-proxy-with-nginx-on-rhel">Reverse Proxy with Nginx on RHEL<a class="headerlink" href="#reverse-proxy-with-nginx-on-rhel" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This article introducing a method on reverse proxy with Nginx web server on RHEL.</p>
+<h2 id="1-install-nginx">1. Install Nginx<a class="headerlink" href="#1-install-nginx" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo dnf install nginx
 </code></pre></div>
-<h2 id="2-hexo">2. 安装hexo框架<a class="headerlink" href="#2-hexo" title="Permanent link">&para;</a></h2>
-<p>进入博客所在的文件夹，安装hexo
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo npm i hexo-cli -g
+<h2 id="2-edit-nginx-config-file">2. Edit Nginx Config File<a class="headerlink" href="#2-edit-nginx-config-file" title="Permanent link">&para;</a></h2>
+<h3 id="1-etcnginxnginxconf">(1). <code>/etc/nginx/nginx.conf</code><a class="headerlink" href="#1-etcnginxnginxconf" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>user nginx;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>worker_processes auto;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>error_log /var/log/nginx/error.log;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>pid /run/nginx.pid;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>include /usr/share/nginx/modules/*.conf;
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>events {
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    worker_connections 1024;
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>}
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>http {
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                      &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    access_log  /var/log/nginx/access.log  main;
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    sendfile            on;
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    tcp_nopush          on;
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    tcp_nodelay         on;
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    keepalive_timeout   65;
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    types_hash_max_size 4096;
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    include             /etc/nginx/mime.types;
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    default_type        application/octet-stream;
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    # Load modular configuration files from the /etc/nginx/conf.d directory.
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    # See http://nginx.org/en/docs/ngx_core_module.html#include
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    # for more information.
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    include /etc/nginx/conf.d/*.conf;
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>}
 </code></pre></div>
-安装必备组件
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo npm install
+<h3 id="2-site-config-in-etcnginxconfdconf">(2). Site Config in <code>/etc/nginx/conf.d/*.conf</code><a class="headerlink" href="#2-site-config-in-etcnginxconfdconf" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>server {
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    server_name WEB.DOMAIN.com;
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    location / {
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        proxy_ssl_server_name on;
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        proxy_set_header X-Real-IP $remote_addr;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        proxy_set_header X-Forwarded-Proto $scheme;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        proxy_set_header Host $host;
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        proxy_pass http://$host:$remote_port;
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    }
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    listen 443 ssl http2; # DO NOT NEED IF YOU USE NGINX
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    ssl_certificate path/to/certificate/fullchain.pem; # DO NOT NEED IF YOU USE NGINX
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    ssl_certificate_key path/to/certificate//privkey.pem; # DO NOT NEED IF YOU USE NGINX
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>}
 </code></pre></div>
-检查hexo是否安装完成
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hexo -v
+<h2 id="3-ssl-with-lets-encrypt">3. SSL with Let's Encrypt<a class="headerlink" href="#3-ssl-with-lets-encrypt" title="Permanent link">&para;</a></h2>
+<h3 id="1-install-certbot">(1). Install Certbot<a class="headerlink" href="#1-install-certbot" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo dnf install certbot
+</code></pre></div>
+<h3 id="2-opt-install-plugin-for-nginx">(2). (Opt.) Install plugin for nginx<a class="headerlink" href="#2-opt-install-plugin-for-nginx" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo dnf install python3-certbot-nginx
+</code></pre></div>
+<h3 id="3-opt-install-plugin-for-dns-cloudflare">(3). (Opt.) Install plugin for dns-cloudflare<a class="headerlink" href="#3-opt-install-plugin-for-dns-cloudflare" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo dnf install python3-certbot-dns-cloudflare
+</code></pre></div>
+<h3 id="4-applying-for-ssl-certificate">(4). Applying for SSL Certificate<a class="headerlink" href="#4-applying-for-ssl-certificate" title="Permanent link">&para;</a></h3>
+<p>According to steps above, there are many ways to get certificate. We demonstrate 2 ways matchs steps (2) and (3) before.</p>
+<ol>
+<li>
+<p>Sign with Nginx</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo certbot --nginx -d domainname.com
+</code></pre></div>
+<p>In this way, Certificates will be configured in *.conf in folder <code>/etc/nginx/conf.d/</code> automatically.</p>
+</li>
+<li>
+<p>Sign with dns-cloudflare</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo certbot certonly --dns-cloudflare \
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    --dns-cloudflare-credentials \
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    ~/.secrets/certbot/cloudflare.ini \
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    -d example.com
+</code></pre></div>
+<p>In this way, you need a cloudflare key file:
+<code>cat cloudflare.ini</code>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a># Cloudflare API credentials used by Certbot
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>dns_cloudflare_email = cloudflare@example.com
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>dns_cloudflare_api_key = 0123456789abcdef0123456789abcdef01234
 </code></pre></div></p>
-<h2 id="3-post">3. 新建一个post<a class="headerlink" href="#3-post" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hexo new post &quot;__Post_Name&quot;
+</li>
+</ol>
+<h2 id="4-set-selinux-sebool">4. Set SELinux sebool<a class="headerlink" href="#4-set-selinux-sebool" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo setsebool -P httpd_can_network_connect 1
 </code></pre></div>
-<h2 id="4">4. 发布博客<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>hexo d -g
-</code></pre></div>
+<h2 id="ref">REF<a class="headerlink" href="#ref" title="Permanent link">&para;</a></h2>
+<p>[1]. https://certbot.eff.org/</p>
+<p>[2]. https://certbot-dns-cloudflare.readthedocs.io/en/stable/</p>
+<p>[3]. https://docs.nginx.com/</p>
+<p>[4]. https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx</p>
 
 
 
@@ -1575,7 +1612,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 5, 2024</span>
   </span>
 
     
@@ -1585,7 +1622,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 9, 2021</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 17, 2024</span>
   </span>
 
     
@@ -1595,12 +1632,11 @@
   <span class="md-source-file__fact">
     <span class="md-icon" title="Contributors">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.536 5.536 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13v-1.75M0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20H0m24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9V20Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/></svg>
       
     </span>
     <nav>
       
-        <a href="mailto:haoran_qi@outlook.com">Haoran Qi</a>, 
         <a href="mailto:haoran.qi@outlook.com">Haoran.Qi</a>
     </nav>
   </span>
@@ -1680,7 +1716,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../TCP-Over-DNS-%E5%AE%9E%E7%8E%B0%E7%BB%95%E8%BF%87%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%A1%E8%B4%B9/" class="md-footer__link md-footer__link--prev" aria-label="Previous: TCP Over DNS 实现绕过校园网计费">
+          <a href="../../Systemd/Execute-Scripts-on-Period-with-Systemd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Execute Scripts on Period with Systemd">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1690,20 +1726,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                TCP Over DNS 实现绕过校园网计费
+                Execute Scripts on Period with Systemd
               </div>
             </div>
           </a>
         
         
           
-          <a href="../VM-Cpp-Qt/" class="md-footer__link md-footer__link--next" aria-label="Next: VM CPP QT Compiling Environment with VSCode">
+          <a href="../../../friends/" class="md-footer__link md-footer__link--next" aria-label="Next: Friends">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                VM CPP QT Compiling Environment with VSCode
+                Friends
               </div>
             </div>
             <div class="md-footer__button md-icon">
